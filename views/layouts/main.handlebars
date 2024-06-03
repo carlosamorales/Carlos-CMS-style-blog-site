@@ -2,28 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>The Tech Blog</title>
-  <!-- Add links to your CSS files here -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
-        <!-- Conditionally render Login or Logout based on user session -->
-        {{#if loggedIn}}
-          <li><a href="/logout">Logout</a></li>
-        {{else}}
-          <li><a href="/login">Login</a></li>
-        {{/if}}
-      </ul>
-    </nav>
-  </header>
-  
-  <!-- This is where the content of your individual pages will be injected -->
   {{{body}}}
-
-  <!-- Add scripts here if necessary -->
 </body>
 </html>
