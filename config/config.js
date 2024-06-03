@@ -1,30 +1,15 @@
-// config.js
-
+const Sequelize = require('sequelize');
 require('dotenv').config();
 
-module.exports = {
-  development: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
     host: 'localhost',
     dialect: 'mysql',
     port: 3306,
-    // Additional Sequelize configurations for the development environment
-  },
-  test: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: `${process.env.DB_NAME}_test`,
-    host: 'localhost',
-    dialect: 'mysql',
-    port: 3306,
-    // Additional Sequelize configurations for the test environment
-  },
-  production: {
-    use_env_variable: 'JAWSDB_URL', // Heroku provides this when you add JAWSDB
-    dialect: 'mysql',
-    // Sequelize expects a single connection string for production, 
-    // so no other settings like username, password, etc., are necessary here
   }
-};
+);
+
+module.exports = sequelize;
