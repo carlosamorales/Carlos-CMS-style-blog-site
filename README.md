@@ -6,14 +6,15 @@
 
 Carlos-CMS-Style-Blog-Site is a full-stack content management system (CMS)-style blog application built to facilitate seamless blogging and interaction among developers. The application allows users to create, edit, delete, and comment on blog posts, ensuring a dynamic and engaging user experience.
 
-Technologies Used
-Front End: HTML, CSS, JavaScript
-Back End: Node.js, Express.js
-Templating Engine: Handlebars.js
-Database: MySQL (JawsDB on Heroku)
-ORM: Sequelize
-Authentication: Express-session, bcrypt
-Deployment: Heroku
+### Technologies Used
+- **Front End**: HTML, CSS, JavaScript
+- **Back End**: Node.js, Express.js
+- **Templating Engine**: Handlebars.js
+- **Database**: MySQL (JawsDB on Heroku)
+- **ORM**: Sequelize
+- **Authentication**: Express-session, bcrypt
+- **Deployment**: Heroku
+
 
 
 - [Installation](#installation)
