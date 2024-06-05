@@ -1,0 +1,21 @@
+<div class="post">
+  <h2>{{title}}</h2>
+  <p>{{content}}</p>
+  <p class="post-metadata">Posted by {{user.username}} on {{createdAt}}</p>
+
+  {{#if loggedIn}}
+  <button class="add-comment-btn" data-id="{{id}}">Add Comment</button>
+  <div class="comment-form" id="comment-form-{{id}}" style="display: none;">
+    <form>
+      <textarea class="comment" name="comment" rows="4" placeholder="Add a comment"></textarea>
+      <button type="submit" class="submit-comment-btn" data-id="{{id}}">Submit</button>
+    </form>
+  </div>
+  {{/if}}
+
+  <div class="comments">
+    {{#each comments}}
+    {{ comment}}
+    {{/each}}
+  </div>
+</div>

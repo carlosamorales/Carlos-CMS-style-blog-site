@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 // Create a new user
 router.post('/', async (req, res) => {
@@ -11,7 +10,13 @@ router.post('/', async (req, res) => {
       password: req.body.password,
     });
 
-    res.status(200).json(newUser);
+    req.session.save(() => {
+      req.session.user_id = newUser.id;
+      req.session.username = newUser.username;
+      req.session.loggedIn = true;
+
+      res.status(200).json(newUser);
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -34,11 +39,26 @@ router.post('/login', async (req, res) => {
       return;
     }
 
-    const token = jwt.sign({ id: user.id }, 'your_secret_key', { expiresIn: '1h' });
+    req.session.save(() => {
+      req.session.user_id = user.id;
+      req.session.username = user.username;
+      req.session.loggedIn = true;
 
-    res.status(200).json({ user, token });
+      res.status(200).json({ user, message: 'You are now logged in!' });
+    });
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+// User logout
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
   }
 });
 

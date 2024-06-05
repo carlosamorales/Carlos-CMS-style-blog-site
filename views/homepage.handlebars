@@ -1,30 +1,30 @@
 {{!-- views/homepage.handlebars --}}
 
-<header>
-  <h1>The Tech Blog</h1>
-</header>
+<h1>The Tech Blog</h1>
 
-<nav>
-  <a href="/">Home</a>
-  {{#if loggedIn}}
-    <a href="/dashboard">Dashboard</a>
-    <a href="/logout">Logout</a>
-  {{else}}
-    <a href="/login">Login</a>
-    <a href="/signup">Sign Up</a>
-  {{/if}}
-</nav>
+{{#each posts}}
+  <div class="post">
+    <h2>{{this.title}}</h2>
+    <p>{{this.content}}</p>
+    {{> user username=this.user.username createdAt=(format_date this.createdAt)}}
 
-<div class="container">
-  {{#each posts}}
-    <div class="post">
-      <h2>{{this.title}}</h2>
-      <p>{{this.content}}</p>
-      <p class="post-metadata">Posted by {{this.user.username}} on {{this.createdAt}}</p>
+    {{#if ../loggedIn}}
+      {{#unlessCond this.user_id ../loggedInUserId}}
+        <button class="add-comment-btn" data-id="{{this.id}}">Add Comment</button>
+        <div class="comment-form" id="comment-form-{{this.id}}" style="display: none;">
+          <textarea class="comment" rows="4" placeholder="Add a comment"></textarea>
+          <button class="submit-comment-btn" data-id="{{this.id}}">Submit</button>
+        </div>
+      {{/unlessCond}}
+    {{/if}}
+
+    <div class="comments">
+      {{#each this.comments}}
+        <div class="comment">
+          <p>{{this.comment_text}}</p>
+          {{> user username=this.user.username createdAt=(format_date this.createdAt)}}
+        </div>
+      {{/each}}
     </div>
-  {{/each}}
-</div>
-
-<footer>
-  <p>&copy; 2024 The Tech Blog</p>
-</footer>
+  </div>
+{{/each}}
