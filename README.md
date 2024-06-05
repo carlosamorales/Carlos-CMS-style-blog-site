@@ -4,7 +4,17 @@
 
 ## Description
 
-Just Another Text Editor (JATE) is a progressive web application (PWA) that allows users to create and edit notes or code snippets directly in the browser. The application is designed to work both online and offline, ensuring users can access their content at any time. JATE leverages modern web technologies, including IndexedDB for data storage, Webpack for module bundling, and Workbox for service worker management.
+Carlos-CMS-Style-Blog-Site is a full-stack content management system (CMS)-style blog application built to facilitate seamless blogging and interaction among developers. The application allows users to create, edit, delete, and comment on blog posts, ensuring a dynamic and engaging user experience.
+
+Technologies Used
+Front End: HTML, CSS, JavaScript
+Back End: Node.js, Express.js
+Templating Engine: Handlebars.js
+Database: MySQL (JawsDB on Heroku)
+ORM: Sequelize
+Authentication: Express-session, bcrypt
+Deployment: Heroku
+
 
 - [Installation](#installation)
 - [Usage](#usage)
